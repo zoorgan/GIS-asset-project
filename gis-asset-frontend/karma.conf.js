@@ -32,11 +32,11 @@ module.exports = function (config) {
     autoWatch: false,
     browsers: ['ChromeHeadlessNoSandbox'],
     customLaunchers: {
-      ChromeHeadlessNoSandbox: {
-        base: 'ChromeHeadless',
-        flags: ['--no-sandbox', '--disable-gpu', '--disable-translate', '--disable-extensions'],
-      },
-    },
+  ChromeHeadlessNoSandbox: {
+    base: 'ChromeHeadless',
+    flags: ['--no-sandbox', '--disable-setuid-sandbox']
+  }
+},
     singleRun: true,
     restartOnFileChange: false,
     browserNoActivityTimeout: 60000,

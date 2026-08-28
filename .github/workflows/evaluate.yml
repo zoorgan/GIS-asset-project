@@ -20,15 +20,22 @@ jobs:
           cache: 'npm'
           cache-dependency-path: gis-asset-frontend/package-lock.json
 
+      - name: Install Chromium for Karma Tests
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y chromium-browser
+
       - name: Install Dependencies
         run: |
           cd gis-asset-frontend
           npm ci
 
       - name: Run Tests & Build Check
+        env:
+          CHROME_BIN: /usr/bin/chromium-browser
         run: |
           cd gis-asset-frontend
-          npx ng test --watch=false --browsers=ChromeHeadless
+          npx ng test --watch=false --browsers=ChromeHeadlessNoSandbox
           npx ng build --configuration=production
 
   evaluate-backend:
