@@ -2,7 +2,7 @@
   display: block;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
 
-  /* خلفية غامقة دافئة متباينة مع البانل */
+
   background: rgba(45, 40, 36, 0.85) !important;
   backdrop-filter: blur(10px);
   border-radius: 18px !important;
@@ -14,7 +14,7 @@
 label,
 .field-label {
   color: #f1f5f9 !important;
-  font-size: 0.85rem !important;
+  font-size: 1.2rem !important;
   font-weight: 600 !important;
   margin-bottom: 6px;
   display: block;
@@ -36,7 +36,7 @@ div[class*="center"] {
   border: 1px solid rgba(255, 255, 255, 0.1) !important;
   color: #ffffff !important;
   border-radius: 10px !important;
-  font-size: 0.875rem !important;
+  font-size: 0.8rem !important;
 
   &:hover, &:focus-within {
     border-color: #3b82f6 !important;

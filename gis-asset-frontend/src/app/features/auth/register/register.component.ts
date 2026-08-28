@@ -7,8 +7,8 @@ import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
 import { ButtonModule } from 'primeng/button';
 import { MessageModule } from 'primeng/message';
-import { AuthStore } from '../../core/state/auth.store';
-import { passwordsMatchValidator } from './password-match.validator';
+import { AuthStore } from '../../../core/state/auth.store';
+import { passwordsMatchValidator } from '../password-match.validator';
 
 
 const USERNAME_PATTERN = /^[a-zA-Z0-9_.-]+$/;
@@ -29,7 +29,7 @@ const PASSWORD_HAS_NUMBER = /[0-9]/;
     MessageModule,
   ],
   templateUrl: './register.component.html',
-  styleUrls: ['./auth-shared.scss'],
+  styleUrls: ['./../auth-shared.scss'],
 })
 export class RegisterComponent {
   protected readonly authStore = inject(AuthStore);

@@ -5,11 +5,11 @@ import { TagModule } from 'primeng/tag';
 import { ButtonModule } from 'primeng/button';
 import { TooltipModule } from 'primeng/tooltip';
 import { ConfirmationService, MessageService, SharedModule } from 'primeng/api'; // 👈 ضفنا SharedModule هنا
-import { AssetStore } from '../../core/state/asset.store';
-import { AuthStore } from '../../core/state/auth.store';
-import { AssetApiError } from '../../core/services/asset.service';
-import { Asset, AssetStatus, ASSET_TYPE_LABELS } from '../../core/models';
-import { formatDistance, hasDistance } from '../../core/utils/asset-format.util';
+import { AssetStore } from '../../../core/state/asset.store';
+import { AuthStore } from '../../../core/state/auth.store';
+import { AssetApiError } from '../../../core/services/asset.service';
+import { Asset, AssetStatus, ASSET_TYPE_LABELS } from '../../../core/models';
+import { formatDistance, hasDistance } from '../../../core/utils/asset-format.util';
 
 type StatusSeverity = 'success' | 'warning' | 'danger';
 
@@ -28,7 +28,7 @@ const STATUS_SEVERITY: Record<AssetStatus, StatusSeverity> = {
     TagModule,
     ButtonModule,
     TooltipModule,
-    SharedModule // 👈 ضفناها هنا في الـ imports
+    SharedModule
   ],
   templateUrl: './asset-table.component.html',
   styleUrls: ['./asset-table.component.scss'],

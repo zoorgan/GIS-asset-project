@@ -9,8 +9,8 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { ButtonModule } from 'primeng/button';
 import { MessageService } from 'primeng/api';
 import { finalize } from 'rxjs';
-import { AssetStore } from '../../core/state/asset.store';
-import { AssetApiError } from '../../core/services/asset.service';
+import { AssetStore } from '../../../core/state/asset.store';
+import { AssetApiError } from '../../../core/services/asset.service';
 import {
   Asset,
   AssetStatus,
@@ -19,7 +19,7 @@ import {
   ASSET_TYPES,
   ASSET_TYPE_LABELS,
   LatLngPoint,
-} from '../../core/models';
+} from '../../../core/models';
 
 interface SelectOption<T> {
   label: string;

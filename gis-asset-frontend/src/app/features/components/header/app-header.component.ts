@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 import { TagModule } from 'primeng/tag';
-import { AuthStore } from '../../core/state/auth.store';
+import { AuthStore } from '../../../core/state/auth.store';
 
 
 @Component({

@@ -2,7 +2,7 @@ import * as L from 'leaflet';
 import { Asset, AssetStatus, AssetType, AssetWithDistance, ASSET_TYPE_LABELS } from '../../core/models';
 import { formatDistance, hasDistance } from '../../core/utils/asset-format.util';
 
-/** Distinct color per asset type — used for the custom div-icon pins. */
+
 export const ASSET_TYPE_COLORS: Record<AssetType, string> = {
   WATER_VALVE: '#2196F3',
   ELECTRIC_POLE: '#FF9800',

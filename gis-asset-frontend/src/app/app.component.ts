@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { AppHeaderComponent } from './features/header/app-header.component';
+import { AppHeaderComponent } from './features/components/header/app-header.component';
 
 
 @Component({

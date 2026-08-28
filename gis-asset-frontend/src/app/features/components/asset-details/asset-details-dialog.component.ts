@@ -3,8 +3,8 @@ import { CommonModule } from '@angular/common';
 import { DialogModule } from 'primeng/dialog';
 import { ButtonModule } from 'primeng/button';
 import { TagModule } from 'primeng/tag';
-import { Asset, AssetWithDistance, ASSET_TYPE_LABELS } from '../../core/models';
-import { formatDistance, hasDistance } from '../../core/utils/asset-format.util';
+import { Asset, AssetWithDistance, ASSET_TYPE_LABELS } from '../../../core/models';
+import { formatDistance, hasDistance } from '../../../core/utils/asset-format.util';
 
 
 @Component({

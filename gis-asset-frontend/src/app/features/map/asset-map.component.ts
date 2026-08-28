@@ -74,7 +74,7 @@ export class AssetMapComponent implements AfterViewInit, OnDestroy {
 
   ngAfterViewInit(): void {
     if (!this.isBrowser) {
-      
+
       return;
     }
 
@@ -87,7 +87,7 @@ export class AssetMapComponent implements AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    
+
     for (const ref of this.effectRefs) {
       ref.destroy();
     }
@@ -110,15 +110,12 @@ export class AssetMapComponent implements AfterViewInit, OnDestroy {
     }
   }
 
-  // ---------------------------------------------------------------------
-  // Initialization
-  // ---------------------------------------------------------------------
 
   private initMap(): void {
     this.map = L.map(this.mapContainerRef.nativeElement, {
       center: DEFAULT_CENTER,
       zoom: DEFAULT_ZOOM,
-      preferCanvas: true, 
+      preferCanvas: true,
     });
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -133,7 +130,7 @@ export class AssetMapComponent implements AfterViewInit, OnDestroy {
     });
   }
 
-  
+
   private initResizeObserver(): void {
     if (typeof ResizeObserver === 'undefined' || !this.map) return;
 
@@ -143,7 +140,7 @@ export class AssetMapComponent implements AfterViewInit, OnDestroy {
     this.resizeObserver.observe(this.mapContainerRef.nativeElement);
   }
 
-  
+
   private registerReactiveSync(): void {
     const markersEffect = effect(
       () => {
@@ -170,7 +167,7 @@ export class AssetMapComponent implements AfterViewInit, OnDestroy {
     this.effectRefs.push(markersEffect, searchCircleEffect);
   }
 
-  
+
 
   private syncMarkers(assets: ReadonlyArray<Asset | AssetWithDistance>): void {
     if (!this.map || !this.markerLayer) return;
@@ -185,7 +182,7 @@ export class AssetMapComponent implements AfterViewInit, OnDestroy {
       }
     }
 
-  
+
     for (const asset of assets) {
       const existing = this.markerIndex.get(asset.id);
 
@@ -196,7 +193,7 @@ export class AssetMapComponent implements AfterViewInit, OnDestroy {
         continue;
       }
 
-      
+
       const currentLatLng = existing.getLatLng();
       if (currentLatLng.lat !== asset.latitude || currentLatLng.lng !== asset.longitude) {
         existing.setLatLng([asset.latitude, asset.longitude]);
@@ -214,7 +211,7 @@ export class AssetMapComponent implements AfterViewInit, OnDestroy {
 
     marker.bindPopup(buildPopupContent(asset), { closeButton: true, maxWidth: 280 });
 
-    
+
     marker.on('click', () => {
       this.pendingClickOriginId = asset.id;
       this.zone.run(() => this.store.selectAsset(asset.id));
@@ -223,7 +220,7 @@ export class AssetMapComponent implements AfterViewInit, OnDestroy {
     return marker;
   }
 
-  
+
   private syncSelection(selectedId: string | null): void {
     if (this.selectedMarkerId && this.selectedMarkerId !== selectedId) {
       this.markerIndex.get(this.selectedMarkerId)?.getElement()?.classList.remove(SELECTED_MARKER_CLASS);
@@ -248,7 +245,7 @@ export class AssetMapComponent implements AfterViewInit, OnDestroy {
     this.pendingClickOriginId = null;
 
     if (!originatedFromThisMarker) {
-      
+
       this.map.flyTo(marker.getLatLng(), Math.max(this.map.getZoom(), FLY_TO_ZOOM), { duration: 0.6 });
     }
 
@@ -257,9 +254,7 @@ export class AssetMapComponent implements AfterViewInit, OnDestroy {
     }
   }
 
-  // ---------------------------------------------------------------------
-  // Search-radius circle (US-003)
-  // ---------------------------------------------------------------------
+
 
   private syncSearchCircle(
     active: boolean,

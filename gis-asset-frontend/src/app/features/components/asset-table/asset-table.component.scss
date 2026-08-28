@@ -23,21 +23,20 @@
 .asset-cards-container {
   background: rgba(45, 40, 36, 0.85) !important;
   backdrop-filter: blur(10px);
-
-
   border-radius: 18px !important;
   border: 1px solid rgba(255, 255, 255, 0.12);
-
-
   overflow-y: auto !important;
   overflow-x: hidden !important;
-
   padding: 12px;
   display: flex;
   flex-direction: column;
   gap: 8px;
   max-height: calc(85vh - 370px);
   box-sizing: border-box;
+  -webkit-border-radius: 18px !important;
+  -moz-border-radius: 18px !important;
+  -ms-border-radius: 18px !important;
+  -o-border-radius: 18px !important;
 }
 
 .asset-card {
@@ -63,8 +62,8 @@
 
     .asset-name {
       color: #ffffff;
-      font-weight: 600;
-      font-size: 0.85rem;
+      font-weight: 800;
+      font-size: 0.9rem;
     }
 
     .asset-meta {

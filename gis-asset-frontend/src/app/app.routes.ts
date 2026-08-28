@@ -13,13 +13,13 @@ export const routes: Routes = [
   {
     path: 'login',
     canActivate: [guestGuard],
-    loadComponent: () => import('./features/auth/login.component').then((m) => m.LoginComponent),
+    loadComponent: () => import('./features/auth/login/login.component').then((m) => m.LoginComponent),
     title: 'Sign In · GIS Asset Manager',
   },
   {
     path: 'register',
     canActivate: [guestGuard],
-    loadComponent: () => import('./features/auth/register.component').then((m) => m.RegisterComponent),
+    loadComponent: () => import('./features/auth/register/register.component').then((m) => m.RegisterComponent),
     title: 'Create Account · GIS Asset Manager',
   },
   {
