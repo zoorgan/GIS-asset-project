@@ -1,0 +1,14 @@
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--surface-border, #eeeeee);
+}
+
+.detail-label {
+  color: var(--text-color-secondary, #757575);
+  font-weight: 500;
+  font-size: 0.85rem;
+}

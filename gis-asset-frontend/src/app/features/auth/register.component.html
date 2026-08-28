@@ -1,0 +1,101 @@
+<div class="auth-page">
+  <p-card class="auth-card">
+    <div class="auth-brand">
+      <div class="auth-brand__icon"><i class="pi pi-user-plus"></i></div>
+      <h1 class="auth-brand__title">Create your account</h1>
+      <p class="auth-brand__subtitle">Join GIS Asset Manager</p>
+    </div>
+
+    <form [formGroup]="form" (ngSubmit)="submit()" novalidate>
+      <div class="auth-field">
+        <label for="reg-username">Username</label>
+        <input
+          id="reg-username"
+          type="text"
+          pInputText
+          formControlName="username"
+          autocomplete="username"
+          placeholder="jane_doe"
+        />
+        <span class="auth-field-error">
+          <ng-container *ngIf="form.controls.username.touched && form.controls.username.hasError('required')">
+            Username is required.
+          </ng-container>
+          <ng-container *ngIf="form.controls.username.touched && form.controls.username.hasError('minlength')">
+            Username must be at least 3 characters.
+          </ng-container>
+          <ng-container *ngIf="form.controls.username.touched && form.controls.username.hasError('pattern')">
+            Only letters, numbers, underscores, dots, and hyphens are allowed.
+          </ng-container>
+        </span>
+      </div>
+
+      <div class="auth-field">
+        <label for="reg-password">Password</label>
+        <p-password
+          inputId="reg-password"
+          formControlName="password"
+          [toggleMask]="true"
+          [feedback]="true"
+          styleClass="w-full"
+          inputStyleClass="w-full"
+          autocomplete="new-password"
+          placeholder="At least 8 characters"
+        ></p-password>
+        <span class="auth-field-error">
+          <ng-container *ngIf="form.controls.password.touched && form.controls.password.hasError('required')">
+            Password is required.
+          </ng-container>
+          <ng-container *ngIf="form.controls.password.touched && form.controls.password.hasError('minlength')">
+            Password must be at least 8 characters.
+          </ng-container>
+          <ng-container *ngIf="form.controls.password.touched && form.controls.password.errors?.['pattern']">
+            Password must include at least one letter and one number.
+          </ng-container>
+        </span>
+      </div>
+
+      <div class="auth-field">
+        <label for="reg-confirm-password">Confirm Password</label>
+        <p-password
+          inputId="reg-confirm-password"
+          formControlName="confirmPassword"
+          [toggleMask]="true"
+          [feedback]="false"
+          styleClass="w-full"
+          inputStyleClass="w-full"
+          autocomplete="new-password"
+          placeholder="Re-enter your password"
+        ></p-password>
+        <span class="auth-field-error">
+          <ng-container *ngIf="form.controls.confirmPassword.touched && form.controls.confirmPassword.hasError('required')">
+            Please confirm your password.
+          </ng-container>
+          <ng-container *ngIf="form.controls.confirmPassword.touched && form.hasError('passwordsMismatch')">
+            Passwords do not match.
+          </ng-container>
+        </span>
+      </div>
+
+      <p-message
+        *ngIf="authStore.error()"
+        severity="error"
+        [text]="authStore.error()!"
+        styleClass="w-full mb-3"
+      ></p-message>
+
+      <button
+        pButton
+        type="submit"
+        label="Create account"
+        icon="pi pi-user-plus"
+        class="auth-submit"
+        [loading]="authStore.loading()"
+      ></button>
+    </form>
+
+    <div class="auth-footer">
+      Already have an account? <a routerLink="/login">Sign in</a>
+    </div>
+  </p-card>
+</div>

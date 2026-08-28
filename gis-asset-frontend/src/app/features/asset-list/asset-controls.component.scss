@@ -1,0 +1,63 @@
+:host {
+  display: block;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  /* خلفية غامقة دافئة متباينة مع البانل */
+  background: rgba(45, 40, 36, 0.85) !important;
+  backdrop-filter: blur(10px);
+  border-radius: 18px !important;
+  padding: 14px 16px !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+label,
+.field-label {
+  color: #f1f5f9 !important;
+  font-size: 0.85rem !important;
+  font-weight: 600 !important;
+  margin-bottom: 6px;
+  display: block;
+}
+
+.text-muted,
+small,
+span[class*="subtitle"],
+div[class*="center"] {
+  color: #38bdf8 !important;
+  font-size: 0.8rem !important;
+  font-weight: 500;
+}
+
+.p-dropdown,
+.p-inputtext,
+.p-inputnumber-input {
+  background: rgba(30, 27, 24, 0.9) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  color: #ffffff !important;
+  border-radius: 10px !important;
+  font-size: 0.875rem !important;
+
+  &:hover, &:focus-within {
+    border-color: #3b82f6 !important;
+  }
+
+  .p-dropdown-label {
+    color: #ffffff !important;
+  }
+
+  .p-dropdown-trigger {
+    color: #94a3b8 !important;
+  }
+}
+
+hr, .divider {
+  border-color: rgba(255, 255, 255, 0.1) !important;
+  margin: 12px 0 !important;
+}
+
+.p-button {
+  font-weight: 600 !important;
+  letter-spacing: 0.02em;
+  border-radius: 10px !important;
+}

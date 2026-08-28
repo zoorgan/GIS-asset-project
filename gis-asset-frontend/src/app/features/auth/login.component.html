@@ -1,0 +1,68 @@
+<div class="auth-page">
+  <p-card class="auth-card">
+    <div class="auth-brand">
+      <div class="auth-brand__icon"><i class="pi pi-map"></i></div>
+      <h1 class="auth-brand__title">Welcome back</h1>
+      <p class="auth-brand__subtitle">Sign in to GIS Asset Manager</p>
+    </div>
+
+    <form [formGroup]="form" (ngSubmit)="submit()" novalidate>
+      <div class="auth-field">
+        <label for="username">Username</label>
+        <input
+          id="username"
+          type="text"
+          pInputText
+          formControlName="username"
+          autocomplete="username"
+          placeholder="your.username"
+          [class.ng-invalid]="form.controls.username.invalid && form.controls.username.touched"
+        />
+        <span class="auth-field-error">
+          <ng-container *ngIf="form.controls.username.touched && form.controls.username.hasError('required')">
+            Username is required.
+          </ng-container>
+        </span>
+      </div>
+
+      <div class="auth-field">
+        <label for="password">Password</label>
+        <p-password
+          inputId="password"
+          formControlName="password"
+          [feedback]="false"
+          [toggleMask]="true"
+          styleClass="w-full"
+          inputStyleClass="w-full"
+          autocomplete="current-password"
+          placeholder="••••••••"
+        ></p-password>
+        <span class="auth-field-error">
+          <ng-container *ngIf="form.controls.password.touched && form.controls.password.hasError('required')">
+            Password is required.
+          </ng-container>
+        </span>
+      </div>
+
+      <p-message
+        *ngIf="authStore.error()"
+        severity="error"
+        [text]="authStore.error()!"
+        styleClass="w-full mb-3"
+      ></p-message>
+
+      <button
+        pButton
+        type="submit"
+        label="Sign in"
+        icon="pi pi-sign-in"
+        class="auth-submit"
+        [loading]="authStore.loading()"
+      ></button>
+    </form>
+
+    <div class="auth-footer">
+      Don't have an account? <a routerLink="/register">Create one</a>
+    </div>
+  </p-card>
+</div>

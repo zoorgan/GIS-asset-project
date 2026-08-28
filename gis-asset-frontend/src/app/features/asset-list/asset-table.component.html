@@ -1,0 +1,58 @@
+<div class="asset-cards-container">
+
+  <div *ngIf="!store.filteredAssets().length" class="empty-state">
+    <i class="pi pi-search-minus empty-icon"></i>
+    <span class="empty-title">No assets found</span>
+    <small class="empty-subtitle">Try adjusting your type, status, or spatial search criteria.</small>
+  </div>
+
+  <!-- قائمة الكروت -->
+  <div
+    *ngFor="let asset of store.filteredAssets()"
+    class="asset-card"
+    [attr.data-asset-id]="asset.id"
+    (click)="onRowClick(asset)">
+
+    <div class="asset-info">
+      <div class="asset-name" [pTooltip]="asset.name">{{ asset.name }}</div>
+      <div class="asset-meta">
+        <span class="asset-type">{{ typeLabel(asset) }}</span>
+        <span *ngIf="hasDistance(asset)" class="asset-distance">
+          • {{ formatDistance(asset.distanceMeters) }}
+        </span>
+      </div>
+    </div>
+
+    <div class="asset-actions">
+      <p-tag [value]="asset.status" [severity]="severity(asset)"></p-tag>
+
+      <div class="action-buttons">
+        <button
+          pButton
+          icon="pi pi-info-circle"
+          class="p-button-text p-button-rounded p-button-sm"
+          pTooltip="View details"
+          (click)="onViewDetailsClick(asset, $event)"
+        ></button>
+
+        <button
+          *ngIf="authStore.isAdmin()"
+          pButton
+          icon="pi pi-pencil"
+          class="p-button-text p-button-rounded p-button-sm"
+          pTooltip="Edit asset"
+          (click)="onEditClick(asset, $event)"
+        ></button>
+
+        <button
+          *ngIf="authStore.isAdmin()"
+          pButton
+          icon="pi pi-trash"
+          class="p-button-text p-button-danger p-button-rounded p-button-sm"
+          pTooltip="Delete asset"
+          (click)="onDeleteClick(asset, $event)"
+        ></button>
+      </div>
+    </div>
+  </div>
+</div>

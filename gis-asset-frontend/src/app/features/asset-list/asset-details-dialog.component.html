@@ -1,0 +1,45 @@
+<p-dialog
+  [header]="asset?.name ?? 'Asset Details'"
+  [visible]="visible"
+  (visibleChange)="visibleChange.emit($event)"
+  [modal]="true"
+  [dismissableMask]="true"
+  [style]="{ width: '30rem' }"
+  [breakpoints]="{ '640px': '92vw' }"
+>
+  <div *ngIf="asset" class="flex flex-column gap-3">
+    <div class="detail-row">
+      <span class="detail-label">Type</span>
+      <span>{{ assetTypeLabels[asset.type] }}</span>
+    </div>
+
+    <div class="detail-row">
+      <span class="detail-label">Status</span>
+      <p-tag [value]="asset.status"></p-tag>
+    </div>
+
+    <div class="detail-row">
+      <span class="detail-label">Coordinates</span>
+      <span>{{ asset.latitude.toFixed(5) }}, {{ asset.longitude.toFixed(5) }}</span>
+    </div>
+
+    <div class="detail-row" *ngIf="hasDistance(asset)">
+      <span class="detail-label">Distance from search center</span>
+      <span>{{ formatDistance(asset.distanceMeters) }}</span>
+    </div>
+
+    <div *ngIf="asset.description">
+      <span class="detail-label block mb-1">Description</span>
+      <p class="m-0 line-height-3">{{ asset.description }}</p>
+    </div>
+
+    <div class="detail-row">
+      <span class="detail-label">Last Updated</span>
+      <span>{{ asset.updatedAt | date: 'medium' }}</span>
+    </div>
+  </div>
+
+  <ng-template pTemplate="footer">
+    <button pButton type="button" label="Close" icon="pi pi-times" class="p-button-text" (click)="close()"></button>
+  </ng-template>
+</p-dialog>

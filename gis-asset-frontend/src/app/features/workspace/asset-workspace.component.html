@@ -1,0 +1,43 @@
+<p-toast position="top-right"></p-toast>
+<p-confirmDialog [style]="{ width: '26rem' }"></p-confirmDialog>
+
+<div class="workspace-wrapper">
+
+  <div class="map-pane">
+    <app-asset-map (mapClick)="onMapClick($event)"></app-asset-map>
+  </div>
+
+
+  <div class="list-pane">
+    <div class="list-pane__header" *ngIf="authStore.isAdmin()">
+      <button
+        pButton
+        type="button"
+        label="Add Asset"
+        icon="pi pi-plus"
+        class="p-button-sm w-full add-btn"
+        (click)="openCreateDialog()"
+      ></button>
+    </div>
+
+    <app-asset-controls [pendingSearchCenter]="pendingSearchCenter()"></app-asset-controls>
+
+    <div class="table-wrapper">
+      <app-asset-table (viewDetails)="onViewDetails($event)" (editAsset)="onEditAsset($event)"></app-asset-table>
+    </div>
+  </div>
+</div>
+
+<app-asset-details-dialog
+  [asset]="detailsAsset()"
+  [visible]="detailsVisible()"
+  (visibleChange)="onDetailsVisibleChange($event)"
+></app-asset-details-dialog>
+
+<app-asset-form-dialog
+  [asset]="formAsset()"
+  [visible]="formVisible()"
+  [prefillCenter]="pendingSearchCenter()"
+  (visibleChange)="onFormVisibleChange($event)"
+  (saved)="onAssetSaved($event)"
+></app-asset-form-dialog>

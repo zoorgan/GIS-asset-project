@@ -1,0 +1,111 @@
+<p-dialog
+  [header]="isEditMode ? 'Edit Asset' : 'Add Asset'"
+  [visible]="visible"
+  (visibleChange)="visibleChange.emit($event)"
+  [modal]="true"
+  [dismissableMask]="true"
+  [style]="{ width: '30rem' }"
+  [breakpoints]="{ '640px': '94vw' }"
+>
+  <form [formGroup]="form" (ngSubmit)="submit()" novalidate class="flex flex-column gap-3">
+    <div class="flex flex-column gap-2">
+      <label for="asset-name" class="text-sm font-medium">Name</label>
+      <input id="asset-name" type="text" pInputText formControlName="name" placeholder="e.g. Main St Fire Hydrant #12" />
+      <small class="text-red-500" *ngIf="form.controls.name.touched && form.controls.name.hasError('required')">
+        Name is required.
+      </small>
+      <small class="text-red-500" *ngIf="form.controls.name.touched && form.controls.name.hasError('minlength')">
+        Name must be at least 2 characters.
+      </small>
+    </div>
+
+    <div class="flex flex-column gap-2">
+      <label for="asset-type" class="text-sm font-medium">Type</label>
+      <p-dropdown
+        inputId="asset-type"
+        [options]="typeOptions"
+        optionLabel="label"
+        optionValue="value"
+        formControlName="type"
+        placeholder="Select a type"
+        styleClass="w-full"
+        appendTo="body"
+      ></p-dropdown>
+      <small class="text-red-500" *ngIf="form.controls.type.touched && form.controls.type.hasError('required')">
+        Type is required.
+      </small>
+    </div>
+
+    <div class="flex flex-column gap-2">
+      <label for="asset-status" class="text-sm font-medium">Status</label>
+      <p-dropdown
+        inputId="asset-status"
+        [options]="statusOptions"
+        optionLabel="label"
+        optionValue="value"
+        formControlName="status"
+        styleClass="w-full"
+        appendTo="body"
+      ></p-dropdown>
+    </div>
+
+    <div class="flex flex-column gap-2">
+      <label for="asset-description" class="text-sm font-medium">Description</label>
+      <textarea
+        id="asset-description"
+        pInputTextarea
+        formControlName="description"
+        rows="3"
+        placeholder="Optional notes about this asset"
+      ></textarea>
+    </div>
+
+    <div class="grid formgrid">
+      <div class="col-6 flex flex-column gap-2">
+        <label for="asset-lat" class="text-sm font-medium">Latitude</label>
+        <p-inputNumber
+          inputId="asset-lat"
+          formControlName="latitude"
+          mode="decimal"
+          [minFractionDigits]="4"
+          [maxFractionDigits]="6"
+          [min]="-90"
+          [max]="90"
+          styleClass="w-full"
+        ></p-inputNumber>
+        <small class="text-red-500" *ngIf="form.controls.latitude.touched && form.controls.latitude.invalid">
+          Must be between -90 and 90.
+        </small>
+      </div>
+
+      <div class="col-6 flex flex-column gap-2">
+        <label for="asset-lng" class="text-sm font-medium">Longitude</label>
+        <p-inputNumber
+          inputId="asset-lng"
+          formControlName="longitude"
+          mode="decimal"
+          [minFractionDigits]="4"
+          [maxFractionDigits]="6"
+          [min]="-180"
+          [max]="180"
+          styleClass="w-full"
+        ></p-inputNumber>
+        <small class="text-red-500" *ngIf="form.controls.longitude.touched && form.controls.longitude.invalid">
+          Must be between -180 and 180.
+        </small>
+      </div>
+    </div>
+  </form>
+
+  <ng-template pTemplate="footer">
+    <button pButton type="button" label="Cancel" class="p-button-text" (click)="close()"></button>
+    <button
+      pButton
+      type="button"
+      [label]="isEditMode ? 'Save Changes' : 'Create Asset'"
+      icon="pi pi-check"
+      [loading]="submitting()"
+      (click)="submit()"
+    ></button>
+  </ng-template>
+</p-dialog>

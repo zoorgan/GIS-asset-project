@@ -1,0 +1,99 @@
+:host {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.auth-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100%;
+  width: 100%;
+  padding: 1.5rem;
+  background: linear-gradient(135deg, #0d47a1 0%, #1565c0 45%, #1976d2 100%);
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 420px;
+}
+
+.auth-card ::ng-deep .p-card-body {
+  padding: 2rem;
+}
+
+.auth-brand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1.75rem;
+  text-align: center;
+}
+
+.auth-brand__icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--blue-50, #e3f2fd);
+  color: var(--blue-600, #1565c0);
+  font-size: 1.5rem;
+}
+
+.auth-brand__title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-color, #1a1a1a);
+  margin: 0;
+}
+
+.auth-brand__subtitle {
+  font-size: 0.875rem;
+  color: var(--text-color-secondary, #757575);
+  margin: 0;
+}
+
+.auth-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-bottom: 1.1rem;
+}
+
+.auth-field label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-color, #1a1a1a);
+}
+
+.auth-field-error {
+  font-size: 0.78rem;
+  color: var(--red-500, #ef4444);
+  min-height: 1rem;
+}
+
+.auth-submit {
+  width: 100%;
+  margin-top: 0.5rem;
+}
+
+.auth-footer {
+  text-align: center;
+  margin-top: 1.5rem;
+  font-size: 0.875rem;
+  color: var(--text-color-secondary, #757575);
+}
+
+.auth-footer a {
+  color: var(--blue-600, #1565c0);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.auth-footer a:hover {
+  text-decoration: underline;
+}

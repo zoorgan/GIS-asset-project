@@ -1,0 +1,37 @@
+<header class="app-header">
+  <a routerLink="/" class="app-header__brand">
+    <i class="pi pi-map"></i>
+    <span>GIS Asset Manager</span>
+  </a>
+
+  <div class="app-header__actions">
+    <ng-container *ngIf="authStore.isAuthenticated(); else guestActions">
+      <p-tag
+        [value]="authStore.user()?.role"
+        [severity]="authStore.isAdmin() ? 'warning' : 'info'"
+        styleClass="mr-2"
+      ></p-tag>
+      <span class="app-header__username">{{ authStore.user()?.username }}</span>
+      <button
+        pButton
+        type="button"
+        label="Logout"
+        icon="pi pi-sign-out"
+        class="p-button-text p-button-sm"
+        (click)="logout()"
+      ></button>
+    </ng-container>
+
+    <ng-template #guestActions>
+      <a routerLink="/login" class="app-header__link">Login</a>
+      <button
+        pButton
+        type="button"
+        label="Register"
+        icon="pi pi-user-plus"
+        class="p-button-sm"
+        routerLink="/register"
+      ></button>
+    </ng-template>
+  </div>
+</header>

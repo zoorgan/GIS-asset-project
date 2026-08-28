@@ -1,0 +1,87 @@
+<div class="controls-panel flex flex-column gap-3 p-3">
+  <div class="flex flex-column gap-2">
+    <label class="text-sm font-medium" for="type-filter">Filter by Type</label>
+    <p-dropdown
+      inputId="type-filter"
+      [options]="typeOptions"
+      optionLabel="label"
+      optionValue="value"
+      [ngModel]="store.typeFilter()"
+      (onChange)="onTypeChange($event.value)"
+      [disabled]="store.isSpatialSearchActive()"
+      styleClass="w-full"
+      appendTo="body"
+    ></p-dropdown>
+  </div>
+
+  <div class="flex flex-column gap-2">
+    <label class="text-sm font-medium" for="status-filter">Filter by Status</label>
+    <p-dropdown
+      inputId="status-filter"
+      [options]="statusOptions"
+      optionLabel="label"
+      optionValue="value"
+      [ngModel]="store.statusFilter()"
+      (onChange)="onStatusChange($event.value)"
+      [disabled]="store.isSpatialSearchActive()"
+      styleClass="w-full"
+      appendTo="body"
+    ></p-dropdown>
+  </div>
+
+  <small *ngIf="store.isSpatialSearchActive()" class="text-500">
+    Type/status filters are paused while a spatial search is active.
+  </small>
+
+  <p-divider></p-divider>
+
+  <div class="flex flex-column gap-2">
+    <span class="text-sm font-medium">Spatial Search</span>
+
+    <small *ngIf="!pendingSearchCenter" class="text-500">
+      Click anywhere on the map to set a search center.
+    </small>
+    <small *ngIf="pendingSearchCenter" class="text-600">
+      Center: {{ pendingSearchCenter.lat | number: '1.4-4' }}, {{ pendingSearchCenter.lng | number: '1.4-4' }}
+    </small>
+
+    <label class="text-sm" for="radius-input">Radius (meters)</label>
+    <p-inputNumber
+      inputId="radius-input"
+      [ngModel]="radiusMeters()"
+      (ngModelChange)="radiusMeters.set($event)"
+      [min]="minRadius"
+      [max]="maxRadius"
+      [step]="50"
+      [showButtons]="true"
+      suffix=" m"
+      styleClass="w-full"
+    ></p-inputNumber>
+
+    <div class="flex gap-2 mt-2">
+      <button
+        pButton
+        type="button"
+        label="Search"
+        icon="pi pi-search"
+        class="flex-1"
+        [disabled]="!pendingSearchCenter || store.searchLoading()"
+        [loading]="store.searchLoading()"
+        (click)="runSpatialSearch()"
+      ></button>
+      <button
+        *ngIf="store.isSpatialSearchActive()"
+        pButton
+        type="button"
+        label="Clear"
+        icon="pi pi-times"
+        class="p-button-outlined"
+        (click)="clearSearch()"
+      ></button>
+    </div>
+  </div>
+
+  <div class="flex align-items-center gap-2 mt-2 text-cyan-400 font-medium text-sm">
+  <i class="pi pi-map-marker"></i>{{ store.resultCount() }} asset(s) shown
+  </div>
+</div>
