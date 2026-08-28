@@ -1,0 +1,49 @@
+name: Comprehensive Code Evaluation
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  evaluate-frontend:
+    name: Evaluate Frontend (Angular)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: gis-asset-frontend/package-lock.json
+
+      - name: Install Dependencies
+        run: |
+          cd gis-asset-frontend
+          npm ci
+
+      - name: Run Tests & Build Check
+        run: |
+          cd gis-asset-frontend
+          npx ng test --watch=false --browsers=ChromeHeadless
+          npx ng build --configuration=production
+
+  evaluate-backend:
+    name: Evaluate Backend
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install & Run Tests
+        run: |
+          cd gis-asset-backend
+          npm ci
+          npm test --if-present
